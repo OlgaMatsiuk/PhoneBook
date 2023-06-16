@@ -20,12 +20,17 @@ public class HelperUser extends HelperBase{
         type(By.xpath("//input[2]"), password);
 
     }
+        public void openLoginRegistrationForm() {
+
+        click(By.xpath("//*[text()='LOGIN']"));
+    }
     public boolean isLogged() {
         return isElementPresent(By.xpath("//*[text()='Sign Out']"));
     }
     public void logout() {
         click(By.xpath("//*[text()='Sign Out']"));
     }
+
 
 
 }
