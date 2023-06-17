@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
 
-   // WebDriver wd;
-
     @BeforeMethod
 
     public void precondition(){
@@ -40,14 +38,10 @@ public class LoginTest extends TestBase {
         app.getUser().submitLogin();
 
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[normalize-space()='LOGIN']")));
-
     }
-
-
 
     @AfterMethod
     public void tearDown(){
 
     }
-
 }

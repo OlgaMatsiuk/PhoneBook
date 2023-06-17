@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 
 public class RegistrationTest extends TestBase {
 
-   // WebDriver wd;
-
     @BeforeMethod
 
     public void precondition(){
@@ -17,7 +15,6 @@ public class RegistrationTest extends TestBase {
             app.getUser().logout();
         }
     }
-
 
     @Test
     public void registrationPositiveTest(){
@@ -60,6 +57,5 @@ public class RegistrationTest extends TestBase {
     public void tearDown(){
 
     }
-
 
 }
