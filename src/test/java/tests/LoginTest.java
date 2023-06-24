@@ -1,5 +1,6 @@
 package tests;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -21,8 +22,23 @@ public class LoginTest extends TestBase {
     public void loginPositiveTestCorrectMailAndPassword(){
         String email = "matsiuk2015@gmail.com",password="Aravaavara0$";
 
+
         app.getUser().openLoginRegistrationForm();
         app.getUser().fillLoginRegistrationForm(email,password);
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
+
+    }
+    @Test
+    public void loginPositiveUser(){
+        String email = "matsiuk2015@gmail.com",password="Aravaavara0$";
+
+       // User user = new User().withEmail(email).withPassword(password);
+        User user = new User().withEmail(email).withPassword(password);
+
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
         app.getUser().submitLogin();
 
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));

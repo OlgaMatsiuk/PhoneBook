@@ -1,5 +1,6 @@
 package tests;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -8,13 +9,19 @@ import org.testng.annotations.Test;
 
 public class RegistrationTest extends TestBase {
 
-    @BeforeMethod
 
-    public void precondition(){
-        if(app.getUser().isLogged()){
-            app.getUser().logout();
-        }
-    }
+//    @BeforeMethod
+//    public void precondition() {
+//        if(app.getUser().isLogged()==false){
+//
+//            app.getUser()
+//                    .login(new User()
+//                            .withEmail("matsiuk2015@gmail.com")
+//                            .withPassword("Aravaavara0#"))
+//            ;
+//        }
+//
+//    }
 
     @Test
     public void registrationPositiveTest(){
