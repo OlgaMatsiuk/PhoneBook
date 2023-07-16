@@ -1,5 +1,6 @@
 package tests;
 
+import manager.ProviderData;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -8,6 +9,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RegistrationTest extends TestBase {
+    @BeforeMethod(alwaysRun = true)
+
+    public void precondition() {
+        if (app.getUser().isLogged()) {
+            app.getUser().logout();
+        }
+    }
 
 
 //    @BeforeMethod
@@ -23,7 +31,7 @@ public class RegistrationTest extends TestBase {
 //
 //    }
 
-    @Test
+    @Test(groups = {"sanityGroup","regressionGroup"})
     public void registrationPositiveTest(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
 
@@ -34,6 +42,20 @@ public class RegistrationTest extends TestBase {
         app.getUser().submitRegistration();
 
        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
+
+    }
+
+    @Test(dataProvider = "userModelListDTO_CSV", dataProviderClass = ProviderData.class)
+    public void registrationPositiveTest_CSV(User user){
+       // int i = (int)(System.currentTimeMillis()/1000)%3600;
+
+       // String email = "matsiuk2015" + i + "@gmail.com",password="Aravaavara0$#";
+
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(user);
+        app.getUser().submitRegistration();
+
+       //Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
 
     }
 
@@ -62,7 +84,7 @@ public class RegistrationTest extends TestBase {
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
     }

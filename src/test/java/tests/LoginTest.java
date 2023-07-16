@@ -1,15 +1,19 @@
 package tests;
 
+import manager.NgListener;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+@Listeners(NgListener.class)
 
 public class LoginTest extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
 
     public void precondition(){
         if(app.getUser().isLogged()){
@@ -24,13 +28,13 @@ public class LoginTest extends TestBase {
 
 
         app.getUser().openLoginRegistrationForm();
-        app.getUser().fillLoginRegistrationForm(email,password);
+        app.getUser().fillLoginRegistrationForm( email, password);
         app.getUser().submitLogin();
 
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
 
     }
-    @Test
+    @Test(groups = {"smokeGroup","sanityGroup","regressionGroup"})
     public void loginPositiveUser(){
         String email = "matsiuk2015@gmail.com",password="Aravaavara0$";
 
@@ -38,12 +42,13 @@ public class LoginTest extends TestBase {
         User user = new User().withEmail(email).withPassword(password);
 
         app.getUser().openLoginRegistrationForm();
-        app.getUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
+        app.getUser().fillLoginRegistrationForm(user);
         app.getUser().submitLogin();
 
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
 
     }
+
 
     @Test
     public void loginNegativeTestWrongEmail(){
@@ -56,8 +61,9 @@ public class LoginTest extends TestBase {
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[normalize-space()='LOGIN']")));
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
     }
+
 }

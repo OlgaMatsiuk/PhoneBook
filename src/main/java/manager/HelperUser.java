@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.jws.soap.SOAPBinding;
+
 public class HelperUser extends HelperBase{
 
     public HelperUser(WebDriver wd) {
@@ -22,6 +24,11 @@ public class HelperUser extends HelperBase{
     public void fillLoginRegistrationForm(String email, String password) {
         type(By.xpath("//input[1]"), email);
         type(By.xpath("//input[2]"), password);
+
+    }
+    public void fillLoginRegistrationForm(User user) {
+        type(By.xpath("//input[1]"), user.getEmail());
+        type(By.xpath("//input[2]"), user.getPassword());
 
     }
         public void openLoginRegistrationForm() {
@@ -40,8 +47,7 @@ public class HelperUser extends HelperBase{
     fillLoginRegistrationForm(user.getEmail(), user.getPassword());
     pause(3000);
     submitLogin();
-    pause(7000);
-
+    pause(2000);
 
 
     }
