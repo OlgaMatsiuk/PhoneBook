@@ -29,6 +29,7 @@ public class ProviderData {
                     .build()
 
             });
+            line = reader.readLine();
         }
         return list.iterator();
     }
@@ -44,6 +45,7 @@ public class ProviderData {
                     .withPassword(split[1])
 
             });
+            line = reader.readLine();
         }
         return list.iterator();
     }

@@ -19,9 +19,7 @@ public class AddNewContacts extends TestBase{
     @BeforeMethod(alwaysRun = true)
 
     public void precondition(){
-        System.out.println("!!!!!!!!!!!!");
         if(app.getUser().isLogged() == false){
-            System.out.println("???????????????");
             app.getUser()
                     .login(new User()
                             .withEmail("matsiuk2015@gmail.com")
@@ -31,33 +29,31 @@ public class AddNewContacts extends TestBase{
 
     }
 
-//    @Test(invocationCount = 1,groups = {"sanity"})
-//
-//    public void addNewContactsPositive() {
-//        int i = (int)System.currentTimeMillis()/1000%3600;
-//        System.out.println(i);
-//        Contacts contact = Contacts.builder()
-//                .name("Rembo")
-//                .lastName("Nir")
-//                .phone("0535268"+i)
-//                .email("rembo" + i + "@gmail.com")
-//                .address("Israel")
-//                .description("friend")
-//                .build();
-//        logger.info("Phone number is " + contact.getPhone());
-//        app.getContact().openContactForm();
-//        app.getContact().fillContactForm(contact);
-//        app.getContact().submitContactForm();
-//
-//        Assert.assertTrue(
-//                app.getUser()
-//                        .getText(By.xpath("//div[@class='contact-item_card__2SOIM'][last()]//h3"))
-//                        .equals(contact.getPhone())
-//        );
-//
-//
-//
-//    }
+    @Test(invocationCount = 1,groups = {"sanity"})
+
+    public void addNewContactsPositive() {
+        int i = (int)System.currentTimeMillis()/1000%3600;
+        System.out.println(i);
+        Contacts contact = Contacts.builder()
+                .name("Rembo")
+                .lastName("Nir")
+                .phone("0535268"+i)
+                .email("rembo" + i + "@gmail.com")
+                .address("Israel")
+                .description("friend")
+                .build();
+        logger.info("Phone number is " + contact.getPhone());
+        app.getContact().openContactForm();
+        app.getContact().fillContactForm(contact);
+        app.getContact().submitContactForm();
+
+        Assert.assertTrue(
+                app.getUser()
+                        .getText(By.xpath("//div[@class='contact-item_card__2SOIM'][last()]//h3"))
+                        .equals(contact.getPhone())
+        );
+
+    }
 
     @Test(dataProvider = "contactModelListDTO_CSV", dataProviderClass = ProviderData.class)
 
@@ -75,8 +71,6 @@ public class AddNewContacts extends TestBase{
         app.getContact().openContactForm();
         app.getContact().fillContactForm(contacts);
         app.getContact().submitContactForm();
-
-
 
     }
 

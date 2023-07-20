@@ -48,6 +48,20 @@ public class LoginTest extends TestBase {
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
 
     }
+    @Test(groups = {"smokeGroup","sanityGroup","regressionGroup"})
+    public void loginPositiveUserProp(){
+        //String email = "matsiuk2015@gmail.com",password="Aravaavara0$";
+
+        // User user = new User().withEmail(email).withPassword(password);
+        //User user = new User().withEmail(email).withPassword(password);
+
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(app.getEmail(), app.getPassword());
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//*[text()='Sign Out']")));
+
+    }
 
 
     @Test
